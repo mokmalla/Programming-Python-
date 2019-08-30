@@ -4,4 +4,4 @@ def gugudan(n):
     print(n, "x", i,"=",n*i)
 
 if __name__ == '__main__': #이 모듈 자체로만 실행할 때, 호출 || 중요★
-gugudan(3)
+  gugudan(3)
