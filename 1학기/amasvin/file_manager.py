@@ -15,6 +15,6 @@ class FileManager:
             data = pickle.load(f)
             f.close()
         except FileNotFoundError:
-            raise FileNotFoundError #던짐
+            raise FileNotFoundError #던짐 메인이 받아서 처리해줘야함
 
         return data
