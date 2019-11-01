@@ -1,8 +1,7 @@
 class TicTacToe:
     def __init__(self):
         self.board = [".", ".", ".", ".", ".", ".", ".", ".", "."]
-        self.current_turn = "0"
-
+        self.current_turn = "O"
 
     def set(self, row, col):
         if self.get(row, col) ==".": #빈칸일 경우에만 말을 놓을 수 있도록 하자
@@ -10,11 +9,12 @@ class TicTacToe:
             #    self.current_turn = "x"
             #else:
             #    self.current_turn = "O"
-            self.current_turn = "X" if self.current_turn == "O" else "O"
-            self.board[(row*3) + col] == self.current_turn
+            self.current_turn = ("X" if self.current_turn == "O" else "O")
+            self.board[(row*3) + col] = self.current_turn
+        else:
+            print("빈칸이 아니예요. 제대로 잘 입력해요.")
 
-
-    def __get__(self, row, col):
+    def get(self, row, col):
         return self.board[(row*3) + col]
 
     def check_winner(self):
@@ -25,7 +25,7 @@ class TicTacToe:
             if self.get(i,0) == self.get(i,1) == self.get(i, 2) == check:
                 return check
             #/
-            if self.get(0,i) == self.get(1,i) == self.get(2,i) == csheck:
+            if self.get(0,i) == self.get(1,i) == self.get(2,i) == check:
                 return check
 
         if self.get(0,0) == self.get(1,1) == self.get(2,2) == check:
@@ -45,6 +45,7 @@ class TicTacToe:
             if i % 3 ==2:
                 s +="\n"
         return s
+
 
 if __name__ == '__main__':
     ttt = TicTacToe()
