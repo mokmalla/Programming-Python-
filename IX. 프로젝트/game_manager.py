@@ -1,5 +1,6 @@
 from tictactoe import TicTacToe
 import tkinter
+from tkinter import messagebox
 import math
 
 class GameManager:
@@ -49,12 +50,20 @@ class GameManager_GUI:
         self.images["X"] = tkinter.PhotoImage(file="img/X.gif")
         self.canvas.bind("<Button-1>", self.click_handler)
 
-    def click_hanlder(self, event):
+    def click_handler(self, event):
         row = math.floor(event.y/self.TILE_SIZE)
         col = math.floor(event.x/self.TILE_SIZE)
         self.ttt.set(row,col)
         self.draw_board()
-
+        if self.ttt.check_winner() == "O":
+            messagebox.showinfo("게임 오버", "O win!!!")
+            self.root.quit()
+        elif self.ttt.check_winner() == "X":
+            messagebox.showinfo("게임 오버", "X win!!!")
+            self.root.quit()
+        elif self.ttt.check_winner() == "d":
+            messagebox.showinfo("게임 오버", " 무승부")
+            self.root.quit()
 
     def draw_board(self):
         #clear
@@ -81,7 +90,5 @@ class GameManager_GUI:
 if __name__ == '__main__':
     gm = GameManager_GUI()
     gm.play()
-    gm.ttt.set(1,1)
-    gm.draw_board()
 
 
