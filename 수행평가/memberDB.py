@@ -11,36 +11,23 @@ class memberDb:
                                db='performance',
                                charset='utf8mb4')
 
-    def selectId(self, inId):
-        try:
-            with conn.cursor() as cursor:
-                sql = 'SELECT * FROM profile WHERE id = %s'
-                cursor.execute(sql, (inId))
-                result = cursor.fetchall()
-                for i in result:
-                    id = i[0]
 
-        finally:
-            return id
-            self.conn.close()
-
-
-    def selectName(self, inId):
+    #id에 맞는 이름을 출력해주는 함수
+    def  selectName(self, inId):
         name =""
         try:
-            with conn.cursor() as cursor:
-                sql = 'SELECT name FROM profile WHERE id = %s'
+            with self.conn.cursor() as cursor:
+                sql = 'SELECT NAME FROM profile WHERE id = %s'
                 cursor.execute(sql, (inId))
                 result = cursor.fetchall()
                 for i in result:
                     name = i[0]
-                    print(name)
 
         finally:
-            return name
             self.conn.close()
+            return name
 
-
+    #회원정보와 로그인 입력 정보를 비교하는 함수
     def check_Id(self, inId, inPwd):
         result = 1
         id = ""
@@ -66,7 +53,7 @@ class memberDb:
             self.conn.close()
 
 
-
+    #데이터베이스 테이블에 데이터를 넣어주는 함수
     def insert(self, id, pwd, name):
         try:
             with self.conn.cursor() as cursor:

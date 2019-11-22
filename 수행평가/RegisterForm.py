@@ -39,6 +39,7 @@ class registerform:
         button1 = Button(self.root, text='가입', width=10, bg='#114B8A', fg='white',command=self.set_profile).place(x=120, y=270)
         button2 = Button(self.root, text='뒤로가기', width=10, bg='#114B8A', fg='white', command=self.load_module_func).place(x=220, y=270)
 
+    #데이터베이스에 넣어주는 함수
     def set_profile(self):
         id = self.op1.get()
         pwd = self.op2.get()
@@ -46,11 +47,12 @@ class registerform:
         db = memberDb()
         db.insert(id,pwd,name)
 
-
+    #다시 로그인화면으로 돌아가는 함수
     def load_module_func(self):
         self.root.destroy()
         mod = __import__('%s' % ("Login"), fromlist=["Login"])
         cls = getattr(mod, "login").play()
 
+    #회원가입 화면 실행 함수
     def play(self):
         self.root.mainloop()

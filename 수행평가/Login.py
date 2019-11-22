@@ -1,42 +1,47 @@
+#2409서혜림
+#하루에 몇 쪽을 풀어야 시험 전 까지 공부를 다 끝낼 수 있을 지 계산해주는 프로그램
+#Login.py에서 실행
+
 from tkinter import *
 from RegisterForm import registerform
 from memberDB import memberDb
-from member import member
 from Lobby import lobby
 import tkinter.messagebox
 
 
 class login:
 
+    #회원가입 화면으로 넘어가는 함수
     def onClick(self):
         self.root.destroy()
         rg = registerform()
         rg.play()
 
+    #다음 화면으로 이동하는 함수
     def toLobby(self):
-        print(self.op1.get())
+        name = self.db.selectName(self.op1.get())
+
         self.root.destroy()
-        lobby1 = lobby()
-        mb = member()
-        mb.setId(self.op1.get())
+        lobby1 = lobby(name, self.op1.get())
         lobby1.play()
 
+    #로그인 검사 함수
     def loginPro(self):
         id = self.op1.get()
         pwd = self.op2.get()
-        db = memberDb()
+        self.db = memberDb()
 
         if id == "":
             tkinter.messagebox.showwarning("아이디 오류", "ID를 입력해주십시오.")
         elif pwd == "":
             tkinter.messagebox.showinfo("패스워드 오류", "password를 입력해주십시오.")
 
-        if db.check_Id(id, pwd) == 1:
+        elif self.db.check_Id(id, pwd) == 1:
             tkinter.messagebox.showinfo("로그인 완료","로그인 되었습니다!")
             self.toLobby()
 
 
-        elif db.check_Id(id,pwd) == 3:
+        elif self.db.check_Id(id,pwd) == 3:
             tkinter.messagebox.showinfo("패스워드 오류", "password가 틀렸습니다.")
         else:
             tkinter.messagebox.showinfo("아이디 오류", "ID가 틀렸습니다.")
@@ -67,10 +72,10 @@ class login:
         button1 = Button(self.root, text='로그인', width=12, bg='#114B8A', fg='white', command=self.loginPro).place(x=100, y=180)
         button2 = Button(self.root, text='회원가입', width=12, bg='#114B8A', fg='white', command=self.onClick).place(x=220, y=180)
 
+    #login 실행 함수
     def play(self):
         self.root.mainloop()
 
 
-
-l= login()
-l.play()
+lo = login()
+lo.play()
