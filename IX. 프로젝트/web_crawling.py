@@ -6,10 +6,11 @@ from urllib.request import urlopen
 #네이버 웹툰 > 신의 탑 제목 가져오자
 
 if __name__ == '__main__':
-    data = urlopen("https://comic.naver.com/webtoon/list.nhn?titleId=183559&weekday=mon")
-    data = urlopen("https://comic.naver.com/webtoon/list.nhn?titleId=651673&weekday=wed")
-    soup = BeautifulSoup(data,"lxml")
-    print(data)
+    # data = urlopen("https://comic.naver.com/webtoon/list.nhn?titleId=183559&weekday=mon")
+    # data = urlopen("https://comic.naver.com/webtoon/list.nhn?titleId=651673&weekday=wed")
+    # soup = BeautifulSoup(data,"lxml")
+    with urlopen("https://comic.naver.com/webtoon/list.nhn?titleId=183559&weekday=mon") as response:
+        response_byte = response.read()
     cartoon_titles = soup.find_all("td", attrs={'class':'title'})   #<td class="title">
     html = "<html><body><meta charset='utf-8'></head><body>"
     print(html)
