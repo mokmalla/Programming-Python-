@@ -16,10 +16,15 @@ if __name__ == '__main__':
     #pag.dragTo(0,0, duration=2)    #드래그 duration 있어야함
     # pag.click(32,285, duration = 2)
     # pag.rightClick()  #오른쪽 버튼
-    pag.doubleClick(32,285, duration=1)
-    #TODO: pag.scroll(432,200)
-    time.sleep(1) #크롬이 열리기를 기다려야 함
-    pag.typewrite("ticket.interpark.com")
-    pag.press("enter")
+    # pag.doubleClick(32,285, duration=1)
+    # time.sleep(1) #크롬이 열리기를 기다려야 함
+    # pag.typewrite("ticket.interpark.com")
+    # pag.press("enter")
     #pag.press("hangul")    #한/영키
     # pag.typewrite("dkdldb")  #아이유 영어로
+
+    #TODO: pag.scroll(432,200)
+    pag.hotkey("alt","tab")
+    time.sleep(2)
+    pag.scroll(clicks=-2000,x=770,y=200)
+
